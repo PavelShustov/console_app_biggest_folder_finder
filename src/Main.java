@@ -3,6 +3,13 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
+
+        MyThread thread = new MyThread(1);
+        MyThread thread2 = new MyThread(2);
+
+        thread.start();
+        thread2.start();
+
         String folderPath = "D:/Музыка";
         File file = new File(folderPath);
 
