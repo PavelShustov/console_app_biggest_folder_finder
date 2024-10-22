@@ -1,9 +1,9 @@
 import java.io.File;
-import java.util.Set;
 import java.util.concurrent.ForkJoinPool;
 
 public class Main {
     public static void main(String[] args) {
+
 
         /*MyThread thread = new MyThread(1);
         MyThread thread2 = new MyThread(2);
@@ -57,8 +57,11 @@ public class Main {
 
         long sum = 0;
         File[] files = folder.listFiles();
-        for (File file : files) {
-            sum += getFolderSize(file);
+        if (files != null) {
+            for (File file : files) {
+                sum += getFolderSize(file);
+
+            }
         }
         return sum;
     }
@@ -69,16 +72,13 @@ public class Main {
         if (size > 1024 && size < Math.pow(1024, 2)) {
             size = size / 1024;
             return size + "Kb";
-        }
-        if (size > Math.pow(1024, 2) && size < Math.pow(1024, 3) && size < Math.pow(1024, 4)) {
+        } else if (size > Math.pow(1024, 2) && size < Math.pow(1024, 3) && size < Math.pow(1024, 4)) {
             size = size / (long) Math.pow(1024, 2);
             return size + "Mb";
-        }
-        if (size > Math.pow(1024, 3) && size < Math.pow(1024, 4)) {
+        } else if (size > Math.pow(1024, 3) && size < Math.pow(1024, 4)) {
             size = size / (long) Math.pow(1024, 3);
             return size + "Gb";
-        }
-        if (size > Math.pow(1024, 4)) {
+        } else if (size > Math.pow(1024, 4)) {
             size = size / (long) Math.pow(1024, 4);
             return size + "Tb";
         }
@@ -89,7 +89,7 @@ public class Main {
     //  24B, 234K, 36M, 34G, 42T
     //  234 => 239616
     public static long getSizeFromHumanReadableSize(String size) {
-        long valueOfSize = Long.valueOf(size.replaceAll("[^0-9]+", ""));
+        long valueOfSize = Long.parseLong(size.replaceAll("[^0-9]+", ""));
         if (size.contains("K")) {
             return valueOfSize * 1024;
         } else if (size.contains("M")) {
