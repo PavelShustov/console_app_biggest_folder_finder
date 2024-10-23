@@ -15,6 +15,8 @@ public class Main {
 
         String folderPath = "D:/Музыка";
         File file = new File(folderPath);
+        Node root = new Node(file);
+
 
         System.out.println(file.length());
        /* System.out.println(); //Разделительная строка.
@@ -30,26 +32,32 @@ public class Main {
         long start = System.currentTimeMillis();
 
         System.out.println(); //Разделительная строка.
-        System.out.println(getFolderSize(file));
+        // System.out.println(getFolderSize(file));
         long duration = System.currentTimeMillis() - start;
         System.out.println(); //Разделительная строка.
         System.out.println(duration + "ms");
 
         long start1 = System.currentTimeMillis();
 
-        FolderSizeCalculator calculator = new FolderSizeCalculator(file);
+        // FolderSizeCalculator calculator = new FolderSizeCalculator(file);
+        FolderSizeCalculator calculator = new FolderSizeCalculator(root);
         ForkJoinPool pool = new ForkJoinPool();
-        long size = pool.invoke(calculator);
+       /* long size = pool.invoke(calculator);
         System.out.println(size);
+        */
+        pool.invoke(calculator);
+        System.out.println(root.getSize());
+        System.out.println(); //Разделительная строка.
+        System.out.println(root);
         long duration1 = System.currentTimeMillis() - start1;
         System.out.println(); //Разделительная строка.
         System.out.println(duration1 + "ms");
         System.out.println(); //Разделительная строка.
-        System.out.println(getHumanReadableSize(getFolderSize(file)));
+        //System.out.println(getHumanReadableSize(getFolderSize(file)));
         System.out.println(); //Разделительная строка.
-        System.out.println(getSizeFromHumanReadableSize(getHumanReadableSize(getFolderSize(file))));
+        //System.out.println(getSizeFromHumanReadableSize(getHumanReadableSize(getFolderSize(file))));
     }
-
+    /*
     public static long getFolderSize(File folder) {
         if (folder.isFile()) {
             return folder.length();
@@ -101,4 +109,5 @@ public class Main {
         }
         return valueOfSize;
     }
+*/
 }
