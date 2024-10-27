@@ -14,6 +14,7 @@ public class Main {
         */
 
         String folderPath = "D:/Музыка";
+        //String folderPath = "D:/Фильмы";
         File file = new File(folderPath);
         Node root = new Node(file);
 

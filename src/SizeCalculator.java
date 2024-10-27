@@ -20,21 +20,21 @@ public class SizeCalculator {
 
     //TODO: 24B, 234Kb, 36Mb, 34Gb, 42Tb
     public static String getHumanReadableSize(long size) {
-
+        double value = size;
         if (size > 1024 && size < Math.pow(1024, 2)) {
-            size = size / 1024;
-            return size + "Kb";
+            value = size / 1024.;
+            return Math.round(value * 100) / 100. + "Kb";
         } else if (size > Math.pow(1024, 2) && size < Math.pow(1024, 3) && size < Math.pow(1024, 4)) {
-            size = size / (long) Math.pow(1024, 2);
-            return size + "Mb";
+            value = size / Math.pow(1024., 2);
+            return Math.round(value * 100) / 100. + "Mb";
         } else if (size > Math.pow(1024, 3) && size < Math.pow(1024, 4)) {
-            size = size / (long) Math.pow(1024, 3);
-            return size + "Gb";
+            value = size / Math.pow(1024., 3);
+            return Math.round(value * 100) / 100. + "Gb";
         } else if (size > Math.pow(1024, 4)) {
-            size = size / (long) Math.pow(1024, 4);
-            return size + "Tb";
+            value = size / Math.pow(1024., 4);
+            return Math.round(value * 100) / 100. + "Tb";
         }
-        return size + "B";
+        return Math.round(value * 100) / 100. + "B";
     }
 
     //TODO: 24B, 234Kb, 36Mb, 34Gb, 42Tb
