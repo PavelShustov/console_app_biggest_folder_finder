@@ -8,7 +8,7 @@ public class MyThread extends Thread {
 
     @Override
     public void run() {
-        for (;;) {
+        for (; ; ) {
             System.out.println(threadNumber);
         }
     }

@@ -13,13 +13,20 @@ public class Main {
 
         */
 
+        for (int i = 0; i < args.length; i++) {
+            System.out.println(i + " => " + args[i]);
+        }
+
+        System.exit(0);
+
         String folderPath = "D:/Музыка";
-        //String folderPath = "D:/Фильмы";
+        // String folderPath = "D:/Фильмы";
+        long sizeLimit = (long) (50 * Math.pow(1024, 2));
         File file = new File(folderPath);
-        Node root = new Node(file);
+        Node root = new Node(file, sizeLimit);
 
 
-        System.out.println(file.length());
+        System.out.println("Размер файла в байтах: " + file.length());
        /* System.out.println(); //Разделительная строка.
 
         Set keys = System.getProperties().keySet();
@@ -32,11 +39,12 @@ public class Main {
 
         long start = System.currentTimeMillis();
 
-        System.out.println(); //Разделительная строка.
+        //System.out.println(); //Разделительная строка.
         // System.out.println(getFolderSize(file));
         long duration = System.currentTimeMillis() - start;
         System.out.println(); //Разделительная строка.
         System.out.println(duration + "ms");
+        System.out.println(); //Разделительная строка.
 
         long start1 = System.currentTimeMillis();
 
@@ -47,68 +55,18 @@ public class Main {
         System.out.println(size);
         */
         pool.invoke(calculator);
-        System.out.println(root.getSize());
+
+        System.out.println("Размер папки в байтах: " + root.getSize());
         System.out.println(); //Разделительная строка.
         System.out.println(root);
+
         long duration1 = System.currentTimeMillis() - start1;
-        System.out.println(); //Разделительная строка.
-        System.out.println(duration1 + "ms");
-        System.out.println(); //Разделительная строка.
+        //System.out.println(); //Разделительная строка.
+        System.out.println("Время затраченное на выполнение программы: " + duration1 + "ms");
+        /*System.out.println(); //Разделительная строка.
         //System.out.println(getHumanReadableSize(getFolderSize(file)));
         System.out.println(); //Разделительная строка.
         //System.out.println(getSizeFromHumanReadableSize(getHumanReadableSize(getFolderSize(file))));
+    */
     }
-    /*
-    public static long getFolderSize(File folder) {
-        if (folder.isFile()) {
-            return folder.length();
-        }
-
-        long sum = 0;
-        File[] files = folder.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                sum += getFolderSize(file);
-
-            }
-        }
-        return sum;
-    }
-
-    //TODO: 24B, 234Kb, 36Mb, 34Gb, 42Tb
-    public static String getHumanReadableSize(long size) {
-
-        if (size > 1024 && size < Math.pow(1024, 2)) {
-            size = size / 1024;
-            return size + "Kb";
-        } else if (size > Math.pow(1024, 2) && size < Math.pow(1024, 3) && size < Math.pow(1024, 4)) {
-            size = size / (long) Math.pow(1024, 2);
-            return size + "Mb";
-        } else if (size > Math.pow(1024, 3) && size < Math.pow(1024, 4)) {
-            size = size / (long) Math.pow(1024, 3);
-            return size + "Gb";
-        } else if (size > Math.pow(1024, 4)) {
-            size = size / (long) Math.pow(1024, 4);
-            return size + "Tb";
-        }
-        return size + "B";
-    }
-
-    //TODO: 24B, 234Kb, 36Mb, 34Gb, 42Tb
-    //  24B, 234K, 36M, 34G, 42T
-    //  234 => 239616
-    public static long getSizeFromHumanReadableSize(String size) {
-        long valueOfSize = Long.parseLong(size.replaceAll("[^0-9]+", ""));
-        if (size.contains("K")) {
-            return valueOfSize * 1024;
-        } else if (size.contains("M")) {
-            return valueOfSize * (long) Math.pow(1024, 2);
-        } else if (size.contains("G")) {
-            return valueOfSize * (long) Math.pow(1024, 3);
-        } else if (size.contains("T")) {
-            return valueOfSize * (long) Math.pow(1024, 4);
-        }
-        return valueOfSize;
-    }
-*/
 }
