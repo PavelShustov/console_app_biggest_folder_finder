@@ -13,15 +13,20 @@ public class Main {
 
         */
 
-        for (int i = 0; i < args.length; i++) {
+       /* for (int i = 0; i < args.length; i++) {
             System.out.println(i + " => " + args[i]);
         }
+*/
+        ParametersBag bag = new ParametersBag(args);
+        String folderPath = bag.getPath();
+        long sizeLimit = bag.getLimit();
 
         System.exit(0);
 
-        String folderPath = "D:/Музыка";
+        //String folderPath = "D:/Музыка";
+        //String folderPath = "G:/Games/Установки";
         // String folderPath = "D:/Фильмы";
-        long sizeLimit = (long) (50 * Math.pow(1024, 2));
+        // long sizeLimit = (long) (50 * Math.pow(1024, 2));
         File file = new File(folderPath);
         Node root = new Node(file, sizeLimit);
 
