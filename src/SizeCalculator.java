@@ -41,7 +41,9 @@ public class SizeCalculator {
     //  24B, 234K, 36M, 34G, 42T
     //  234 => 239616
     public static long getSizeFromHumanReadableSize(String size) {
+
         long valueOfSize = Long.parseLong(size.replaceAll("[^0-9]+", ""));
+
         if (size.contains("K")) {
             return valueOfSize * 1024;
         } else if (size.contains("M")) {
